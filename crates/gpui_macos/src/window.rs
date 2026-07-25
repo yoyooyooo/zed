@@ -2150,6 +2150,7 @@ extern "C" fn handle_key_event(this: &Object, native_event: id, key_equivalent: 
                     .as_ref()
                     .is_some_and(|key_char| key_char.chars().all(|c| !c.is_control()))
                 && !key_down_event.keystroke.modifiers.control
+                && !key_down_event.keystroke.modifiers.alt
                 && !key_down_event.keystroke.modifiers.function
                 && !key_down_event.keystroke.modifiers.platform
                 && unsafe { is_ime_input_source_active() }
@@ -2162,6 +2163,7 @@ extern "C" fn handle_key_event(this: &Object, native_event: id, key_equivalent: 
                 || is_ime_printable_key
                 || (key_down_event.keystroke.key_char.is_none()
                     && !key_down_event.keystroke.modifiers.control
+                    && !key_down_event.keystroke.modifiers.alt
                     && !key_down_event.keystroke.modifiers.function
                     && !key_down_event.keystroke.modifiers.platform)
             {
